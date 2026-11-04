@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Untuk Nila Khusniyah ❤️</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        romantic: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            800: '#9f1239',
+                            900: '#881337',
+                        }
+                    },
+                    fontFamily: {
+                        dancing: ['Dancing Script', 'cursive'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            touch-action: manipulation;
+            background: #0f051d;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .font-dancing {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Glassmorphism styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-modal {
+            background: rgba(25, 10, 30, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(225, 29, 72, 0.25);
+        }
+
+        /* Ambient glowing background */
+        .ambient-bg {
+            background: radial-gradient(circle at 50% 20%, #4c0519 0%, #1e0a29 50%, #090210 100%);
+        }
+
+        /* Heart floating particle animation */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.3) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .floating-heart {
+            position: absolute;
+            pointer-events: none;
+            animation: floatUp 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+        }
+
+        /* Heart overlay burst transition */
+        @keyframes heartOverlayAnim {
+            0% {
+                transform: scale(0) rotate(-45deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.8) rotate(0deg);
+                opacity: 0.95;
+            }
+            100% {
+                transform: scale(3.5) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .heart-burst {
+            animation: heartOverlayAnim 2.5s ease-in-out forwards;
+        }
+
+        /* Pulse glow animation for buttons */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(244, 63, 94, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(244, 63, 94, 0.8); }
+        }
+
+        .btn-glow {
+            animation: pulseGlow 2s infinite;
+        }
+
+        /* Custom scrollbar for inner popups if text is long */
+        .custom-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: rgba(244, 63, 94, 0.5);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="ambient-bg w-full h-screen overflow-hidden flex items-center justify-center relative select-none">
+
+    <!-- Background Animated Floating Hearts Canvas / Container -->
+    <div id="bgHeartsContainer" class="absolute inset-0 pointer-events-none overflow-hidden z-0"></div>
+
+    <!-- MAIN SCREEN 1: Welcome Page -->
+    <main id="welcomeScreen" class="relative z-10 w-full h-full max-w-md mx-auto flex flex-col justify-between p-6 text-center">
+        <!-- Top Spacer -->
+        <div class="pt-8">
+            <span class="inline-block px-4 py-1.5 rounded-full text-xs font-medium bg-rose-500/20 border border-rose-500/30 text-rose-300 tracking-widest uppercase mb-3">
+                <i class="fa-solid fa-heart text-rose-400 mr-1.5 animate-pulse"></i> Sebuah Ungkapan Hati
+            </span>
+        </div>
+
+        <!-- Middle Content -->
+        <div class="flex flex-col items-center justify-center space-y-6 my-auto">
+            <div class="relative">
+                <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-rose-600 to-pink-400 flex items-center justify-center shadow-lg shadow-rose-500/30 mb-2 border-2 border-white/20 mx-auto">
+                    <i class="fa-solid fa-envelope-open-text text-4xl text-white"></i>
+                </div>
+                <span class="absolute -bottom-1 -right-1 flex h-6 w-6">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-6 w-6 bg-rose-500 items-center justify-center text-[10px] text-white font-bold"><i class="fa-solid fa-sparkles"></i></span>
+                </span>
+            </div>
+
+            <div class="space-y-2">
+                <p class="text-rose-200/80 text-sm tracking-wide">Selamat Datang,</p>
+                <h1 class="font-dancing text-5xl font-bold bg-gradient-to-r from-rose-200 via-pink-300 to-rose-400 bg-clip-text text-transparent drop-shadow-md">
+                    Nila Khusniyah
+                </h1>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl border border-rose-500/20 max-w-xs text-center">
+                <p class="text-xs sm:text-sm text-rose-100/90 leading-relaxed font-light">
+                    "Klik <span class="font-semibold text-rose-300">Lanjutkan</span> untuk mengetahui apa yang ingin saya sampaikan kepada anda..."
+                </p>
+            </div>
+        </div>
+
+        <!-- Bottom Action Button -->
+        <div class="pb-8 w-full">
+            <button id="btnStart" onclick="triggerHeartTransition()" class="btn-glow w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-rose-600 via-pink-600 to-rose-500 text-white font-semibold text-base shadow-xl active:scale-95 transition-all duration-300 flex items-center justify-center space-x-2">
+                <span>Lanjutkan</span>
+                <i class="fa-solid fa-arrow-right text-sm"></i>
+            </button>
+        </div>
+    </main>
+
+
+    <!-- TRANSITION OVERLAY (Full Screen Hearts Burst) -->
+    <div id="heartOverlay" class="fixed inset-0 z-50 pointer-events-none flex items-center justify-center hidden bg-rose-950/40 backdrop-blur-sm">
+        <div id="overlayHeartContainer" class="relative w-full h-full flex items-center justify-center">
+            <!-- Dynamic Hearts will be injected here via JS -->
+        </div>
+    </div>
+
+
+    <!-- MODAL CONTAINER (Pop-up System) -->
+    <div id="modalOverlay" class="fixed inset-0 z-40 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        
+        <!-- POP-UP CARD -->
+        <div id="modalCard" class="glass-modal w-full max-w-sm rounded-3xl p-6 relative transform scale-90 transition-transform duration-300 text-center text-white overflow-hidden border border-rose-500/30">
+            
+            <!-- Floating Glow Decor inside modal -->
+            <div class="absolute -top-12 -right-12 w-28 h-28 bg-rose-500/20 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="absolute -bottom-12 -left-12 w-28 h-28 bg-pink-500/20 rounded-full blur-2xl pointer-events-none"></div>
+
+            <!-- Modal Body Content (Dynamic) -->
+            <div id="modalContent" class="relative z-10 custom-scroll max-h-[75vh] overflow-y-auto">
+                <!-- Content generated via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PAGE 2: VALENTINE FINAL PAGE (Hidden initially) -->
+    <div id="valentinePage" class="fixed inset-0 z-30 hidden ambient-bg overflow-y-auto custom-scroll flex flex-col justify-between p-6 text-center">
+        <!-- Floating hearts & flowers backdrop -->
+        <div class="pt-6">
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-rose-500/20 border border-rose-500/30 text-rose-300 text-xs">
+                <i class="fa-solid fa-heart-pulse animate-bounce text-rose-400"></i>
+                <span>Takdir Indah Bersamamu</span>
+            </div>
+        </div>
+
+        <div class="my-auto space-y-6 py-8">
+            <div class="relative inline-block">
+                <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-tr from-rose-500 via-pink-500 to-rose-400 p-1 shadow-2xl shadow-rose-500/50">
+                    <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center">
+                        <i class="fa-solid fa-heart text-5xl text-rose-500 animate-pulse"></i>
+                    </div>
+                </div>
+                <div class="absolute -top-2 -right-2 text-2xl">💖</div>
+                <div class="absolute -bottom-1 -left-2 text-2xl">🌹</div>
+            </div>
+
+            <div class="space-y-3">
+                <h2 class="font-dancing text-4xl sm:text-5xl font-bold text-rose-200 drop-shadow">
+                    Terima Kasih, Nila ❤️
+                </h2>
+                <p class="text-xs sm:text-sm text-rose-100/80 max-w-xs mx-auto leading-relaxed font-light">
+                    Hari ini adalah awal perjalanan baru kita. Terima kasih telah bersedia membuka pintu hati dan melangkah bersama.
+                </p>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl border border-rose-400/30 text-center max-w-xs mx-auto space-y-3">
+                <p class="text-xs text-rose-200/90 italic">
+                    "Mari kita ukir setiap momen, melintasi arus kehidupan, dan tumbuh bersama selamanya."
+                </p>
+            </div>
+        </div>
+
+        <!-- WhatsApp Button -->
+        <div class="pb-6">
+            <a id="btnWhatsApp" href="https://wa.me/6281217255528?text=Ayok%20kita%20mulai%20mas%2C%20kapan%20kamu%20bisa%20menemuiku%3F" target="_blank" class="btn-glow w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-600 via-green-500 to-emerald-600 text-white font-bold text-base shadow-xl flex items-center justify-center space-x-3 active:scale-95 transition-all">
+                <i class="fa-brands fa-whatsapp text-2xl"></i>
+                <span>Beritahu aku</span>
+            </a>
+            <p class="text-[11px] text-rose-300/60 mt-3">Klik tombol untuk langsung mengirim pesan via WhatsApp</p>
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // State Management
+        let currentPopup = 0;
+
+        // Init Background Hearts Simulation
+        function createBgHearts() {
+            const container = document.getElementById('bgHeartsContainer');
+            const heartIcons = ['❤️', '💖', '🌸', '💕', '✨', '🌹'];
+            
+            for (let i = 0; i < 25; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart text-xl sm:text-2xl';
+                heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(heart);
+            }
+        }
+        createBgHearts();
+
+        // 2. Heart Overlay Burst Transition (2-3 seconds)
+        function triggerHeartTransition() {
+            const overlay = document.getElementById('heartOverlay');
+            const container = document.getElementById('overlayHeartContainer');
+            container.innerHTML = '';
+            overlay.classList.remove('hidden');
+
+            // Generate dense heart burst
+            const hearts = ['❤️', '💖', '💗', '💕', '🌹'];
+            for (let i = 0; i < 40; i++) {
+                const h = document.createElement('div');
+                h.className = 'absolute text-4xl sm:text-6xl heart-burst';
+                h.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+                h.style.left = (Math.random() * 80 + 10) + '%';
+                h.style.top = (Math.random() * 80 + 10) + '%';
+                h.style.animationDelay = (Math.random() * 0.8) + 's';
+                container.appendChild(h);
+            }
+
+            // After 2.5 seconds, hide overlay and open Popup 1
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                openPopup(1);
+            }, 2500);
+        }
+
+        // Modal Control Helpers
+        function showModal() {
+            const overlay = document.getElementById('modalOverlay');
+            const card = document.getElementById('modalCard');
+            overlay.classList.remove('pointer-events-none');
+            overlay.classList.remove('opacity-0');
+            overlay.classList.add('opacity-100');
+            card.classList.remove('scale-90');
+            card.classList.add('scale-100');
+        }
+
+        function hideModal() {
+            const overlay = document.getElementById('modalOverlay');
+            const card = document.getElementById('modalCard');
+            overlay.classList.add('opacity-0');
+            overlay.classList.remove('opacity-100');
+            card.classList.add('scale-90');
+            card.classList.remove('scale-100');
+            overlay.classList.add('pointer-events-none');
+        }
+
+        // Render Pop-ups Based on Step
+        function openPopup(step) {
+            currentPopup = step;
+            const content = document.getElementById('modalContent');
+            showModal();
+
+            if (step === 1) {
+                // Pop-up 1
+                content.innerHTML = `
+                    <div class="space-y-5">
+                        <div class="w-16 h-16 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/40 flex items-center justify-center mx-auto text-2xl">
+                            <i class="fa-solid fa-circle-question"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-rose-100">Apakah kamu mengenal saya?</h3>
+                        <div class="grid grid-cols-2 gap-3 pt-2">
+                            <button onclick="handlePopup1Response(true)" class="py-3 px-4 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 text-white font-semibold text-sm active:scale-95 transition-all shadow-md">
+                                Iya
+                            </button>
+                            <button onclick="handlePopup1Response(false)" class="py-3 px-4 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-rose-200 border border-slate-700 font-semibold text-sm active:scale-95 transition-all">
+                                Tidak
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else if (step === 2) {
+                // Pop-up 2
+                content.innerHTML = `
+                    <div class="space-y-5">
+                        <div class="w-16 h-16 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/40 flex items-center justify-center mx-auto text-2xl">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-rose-100 leading-snug">Sebelum lebih jauh lagi, apakah kamu sudah siap?</h3>
+                        <div class="grid grid-cols-2 gap-3 pt-2">
+                            <button onclick="handlePopup2Response(true)" class="py-3 px-4 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 text-white font-semibold text-sm active:scale-95 transition-all shadow-md">
+                                Iya
+                            </button>
+                            <button onclick="handlePopup2Response(false)" class="py-3 px-4 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-rose-200 border border-slate-700 font-semibold text-sm active:scale-95 transition-all">
+                                Tidak
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else if (step === 3) {
+                // Pop-up 3
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/40 flex items-center justify-center mx-auto text-xl">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-rose-100 leading-snug">Coba tebak, apa yang aku rasakan ketika dekat denganmu?</h3>
+                        <div class="space-y-2.5 text-left pt-2">
+                            <button onclick="handlePopup3Choice(1)" class="w-full py-3 px-4 rounded-xl bg-rose-950/60 hover:bg-rose-900/50 border border-rose-500/30 text-rose-100 text-xs sm:text-sm font-medium flex items-center justify-between active:scale-95 transition-all">
+                                <span>1. Aku suka padamu</span>
+                                <i class="fa-solid fa-chevron-right text-rose-400 text-xs"></i>
+                            </button>
+                            <button onclick="handlePopup3Choice(2)" class="w-full py-3 px-4 rounded-xl bg-rose-950/60 hover:bg-rose-900/50 border border-rose-500/30 text-rose-100 text-xs sm:text-sm font-medium flex items-center justify-between active:scale-95 transition-all">
+                                <span>2. Aku nyaman padamu</span>
+                                <i class="fa-solid fa-chevron-right text-rose-400 text-xs"></i>
+                            </button>
+                            <button onclick="handlePopup3Choice(3)" class="w-full py-3 px-4 rounded-xl bg-rose-950/60 hover:bg-rose-900/50 border border-rose-500/30 text-rose-100 text-xs sm:text-sm font-medium flex items-center justify-between active:scale-95 transition-all">
+                                <span>3. Aku jatuh cinta padamu</span>
+                                <i class="fa-solid fa-chevron-right text-rose-400 text-xs"></i>
+                            </button>
+                            <button onclick="handlePopup3Choice(4)" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 border border-rose-400 text-white text-xs sm:text-sm font-semibold flex items-center justify-between active:scale-95 transition-all shadow-md">
+                                <span>4. Aku ingin memiliki hubungan yang lebih serius</span>
+                                <i class="fa-solid fa-heart text-white text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else if (step === 4) {
+                // Pop-up 4
+                content.innerHTML = `
+                    <div class="space-y-4 text-left">
+                        <div class="w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/40 flex items-center justify-center mx-auto text-lg">
+                            <i class="fa-solid fa-feather-pointed"></i>
+                        </div>
+                        <p class="text-xs sm:text-sm text-rose-100/90 leading-relaxed bg-rose-950/40 p-3.5 rounded-2xl border border-rose-500/20 max-h-48 overflow-y-auto custom-scroll">
+                            "Sebenarnya aku berfikir dan selalu bertanya pada diri sendiri, apakah ini tidak terlalu awal untuk memulai sesuatu yang belum selesai?, ya walau aku tidak tahu betul soal masa lalumu dan aku tidak tahu bagaimana perjalanan cintamu. ketika aku berada di dekatmu aku cuma merasakan ketakutan akan lepas darimu, jika tidak keberatan, apakah kamu juga merasakan hal yang sama denganku ?"
+                        </p>
+                        <div class="grid grid-cols-2 gap-3 pt-1">
+                            <button onclick="handlePopup4Response(true)" class="py-3 px-4 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 text-white font-semibold text-sm active:scale-95 transition-all shadow-md text-center">
+                                Iya
+                            </button>
+                            <button onclick="handlePopup4Response(false)" class="py-3 px-4 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-rose-200 border border-slate-700 font-semibold text-sm active:scale-95 transition-all text-center">
+                                Tidak
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else if (step === 5) {
+                // Pop-up 5
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/40 flex items-center justify-center mx-auto text-xl">
+                            <i class="fa-solid fa-ring"></i>
+                        </div>
+                        <h3 class="text-xs sm:text-sm font-bold text-rose-100 leading-snug">
+                            "Jika aku mengajukan pertanyaan, dan ingin memiliki hubungan lebih lanjut, apa pertanyaan yang pantas untuk mengajakmu?"
+                        </h3>
+                        <div class="space-y-2.5 pt-2">
+                            <button onclick="handlePopup5Choice(1)" class="w-full py-3 px-4 rounded-xl bg-rose-950/60 hover:bg-rose-900/50 border border-rose-500/30 text-rose-100 text-xs sm:text-sm font-medium active:scale-95 transition-all text-left flex justify-between items-center">
+                                <span>1. Jadi pacar</span>
+                                <i class="fa-solid fa-ghost text-rose-400 text-xs"></i>
+                            </button>
+                            <button onclick="handlePopup5Choice(2)" class="w-full py-3 px-4 rounded-xl bg-rose-950/60 hover:bg-rose-900/50 border border-rose-500/30 text-rose-100 text-xs sm:text-sm font-medium active:scale-95 transition-all text-left flex justify-between items-center">
+                                <span>2. Mengalir saja dulu</span>
+                                <i class="fa-solid fa-water text-rose-400 text-xs"></i>
+                            </button>
+                            <button onclick="handlePopup5Choice(3)" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 border border-rose-400 text-white text-xs sm:text-sm font-semibold active:scale-95 transition-all text-left flex justify-between items-center shadow-md">
+                                <span>3. Langsung serius saja</span>
+                                <i class="fa-solid fa-gem text-white text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else if (step === 6) {
+                // Pop-up 6
+                content.innerHTML = `
+                    <div class="space-y-4 text-left">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-rose-600 to-pink-500 text-white flex items-center justify-center mx-auto text-xl shadow-lg shadow-rose-500/40">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <p class="text-xs sm:text-sm text-rose-100/90 leading-relaxed bg-rose-950/50 p-4 rounded-2xl border border-rose-500/30 max-h-52 overflow-y-auto custom-scroll font-light italic">
+                            "Bohong jika aku tidak jatuh cinta padamu, Aku sudah mengikhlaskan sesuatu, apakah kamu tidak sadar seberapa beda ketika aku berada di sampingmu?, apakah kamu tidak menyadari semua itu?, aku selalu tenggelam dalam tatapanmu. kamu tahu bahwa aku seorang pengembara. namun, untuk perjalanan kali ini, aku ingin kamu menemaninya"
+                        </p>
+                        <div class="space-y-2 pt-1">
+                            <button onclick="handlePopup6Response(true)" class="btn-glow w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-rose-600 via-pink-600 to-rose-500 text-white font-bold text-xs sm:text-sm active:scale-95 transition-all shadow-lg text-center flex items-center justify-center space-x-2">
+                                <span>Baiklah, ayo kita mulai bersama</span>
+                                <i class="fa-solid fa-sparkles"></i>
+                            </button>
+                            <button onclick="handlePopup6Response(false)" class="w-full py-2.5 px-4 rounded-xl bg-transparent hover:bg-slate-800/40 text-rose-300/80 font-medium text-xs active:scale-95 transition-all text-center">
+                                Aku tidak bisa
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Show Custom Alert Popup (x)
+        function showAlertModal(message, buttonText, onConfirm) {
+            const content = document.getElementById('modalContent');
+            content.innerHTML = `
+                <div class="space-y-5">
+                    <div class="w-16 h-16 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/40 flex items-center justify-center mx-auto text-2xl">
+                        <i class="fa-solid fa-circle-xmark text-rose-400"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm text-rose-100 leading-relaxed px-2 font-medium">
+                        ${message}
+                    </p>
+                    <button id="alertBtn" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 text-white font-semibold text-sm active:scale-95 transition-all shadow-md">
+                        ${buttonText}
+                    </button>
+                </div>
+            `;
+            document.getElementById('alertBtn').onclick = () => {
+                if (onConfirm) onConfirm();
+            };
+        }
+
+        // --- HANDLERS FOR POPUPS ---
+
+        // Popup 1 Logic
+        function handlePopup1Response(isYes) {
+            if (isYes) {
+                openPopup(2);
+            } else {
+                showAlertModal(
+                    "yaaah, harusnya kamu sudah kenal aku dari dulu sih, jangan pura-pura lagi",
+                    "Baiklah",
+                    () => openPopup(1)
+                );
+            }
+        }
+
+        // Popup 2 Logic
+        function handlePopup2Response(isYes) {
+            if (isYes) {
+                openPopup(3);
+            } else {
+                showAlertModal(
+                    "kita sudah jauh melewati hal bersama, salah jika kamu memilih tidak",
+                    "Baiklah",
+                    () => openPopup(2)
+                );
+            }
+        }
+
+        // Popup 3 Logic
+        function handlePopup3Choice(option) {
+            if (option === 1 || option === 2 || option === 3) {
+                const content = document.getElementById('modalContent');
+                content.innerHTML = `
+                    <div class="space-y-4 py-4">
+                        <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center mx-auto text-3xl">
+                            <i class="fa-solid fa-face-smile-beam"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-emerald-300">yaa kamu benar</h4>
+                        <p class="text-xs text-rose-200/70">Kembali otomatis dalam 3 detik...</p>
+                    </div>
+                `;
+                setTimeout(() => {
+                    openPopup(3);
+                }, 3500);
+            } else if (option === 4) {
+                openPopup(4);
+            }
+        }
+
+        // Popup 4 Logic
+        function handlePopup4Response(isYes) {
+            if (isYes) {
+                openPopup(5);
+            } else {
+                showAlertModal(
+                    "bohong jika kamu tidak merasakan perasaan yang sama denganku",
+                    "Baiklah",
+                    () => openPopup(4)
+                );
+            }
+        }
+
+        // Popup 5 Logic
+        function handlePopup5Choice(option) {
+            if (option === 1) {
+                showAlertModal(
+                    "sayangnya umur sudah tidak bisa untuk diajak berpacaran, coba pilihan lain",
+                    "OK",
+                    () => openPopup(5)
+                );
+            } else if (option === 2) {
+                showAlertModal(
+                    "mengalir terus? mau seberapa jauh kita mengalir? apakah kita akan pasrah ketika sudah berada di muara? bukankah kita sudah waktunya untuk melewati arus dan ombak bersama?",
+                    "BAIKLAH",
+                    () => openPopup(6)
+                );
+            } else if (option === 3) {
+                // Confirmation prompt before popup 6
+                const content = document.getElementById('modalContent');
+                content.innerHTML = `
+                    <div class="space-y-5">
+                        <div class="w-16 h-16 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/40 flex items-center justify-center mx-auto text-2xl">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-rose-100">Apakah kamu sudah siap?</h3>
+                        <button onclick="openPopup(6)" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 text-white font-semibold text-sm active:scale-95 transition-all shadow-md">
+                            Saya Siap
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // Popup 6 Logic
+        function handlePopup6Response(isYes) {
+            if (isYes) {
+                hideModal();
+                showValentinePage();
+            } else {
+                showAlertModal(
+                    "Kita sudah mengalir sejauh ini",
+                    "Oke",
+                    () => openPopup(6)
+                );
+            }
+        }
+
+        // Final Transition to Valentine Page
+        function showValentinePage() {
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            const valPage = document.getElementById('valentinePage');
+            valPage.classList.remove('hidden');
+
+            // Trigger Celebration Confetti
+            if (typeof confetti === 'function') {
+                const duration = 4 * 1000;
+                const animationEnd = Date.now() + duration;
+                const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
+
+                const interval = setInterval(function() {
+                    const timeLeft = animationEnd - Date.now();
+                    if (timeLeft <= 0) {
+                        return clearInterval(interval);
+                    }
+                    const particleCount = 50 * (timeLeft / duration);
+                    confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                    confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+                }, 250);
+            }
+        }
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+    </script>
+</body>
+</html>
